@@ -5,7 +5,7 @@ const infodb = new megadb.crearDB("info", "data")
 var ApiRouter = Router()
 
 ApiRouter.post("/commands", (req, res) => {
-    if(req.headers.authorization !== process.env.apiKey) {
+    if(req.body.apikey !== process.env.apiKey) {
         return res.sendStatus(403)
     }
     try {
@@ -23,7 +23,7 @@ ApiRouter.get("/commands", (req, res) => {
 })
 
 ApiRouter.post("/info", (req, res) => {
-    if(req.headers.authorization !== process.env.apiKey) {
+    if(req.body.apikey !== process.env.apiKey) {
         return res.sendStatus(403)
     }
     try {

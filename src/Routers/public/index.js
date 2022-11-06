@@ -14,4 +14,8 @@ PageRouter.get("/assets/:subdir/:filename", (req, res) => {
     res.sendFile(path.join(__dirname, `../../assets/${req.params.subdir}/${req.params.filename}`))
 })
 
+PageRouter.get("/assets/bootstrap/:subdir/:filename", (req, res) => {
+    res.sendFile(path.join(__dirname, `../../assets/bootstrap/${req.params.subdir}/${req.params.filename}`))
+})
+
 module.exports = PageRouter
