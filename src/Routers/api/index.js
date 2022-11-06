@@ -5,6 +5,9 @@ const infodb = new megadb.crearDB("info", "data")
 var ApiRouter = Router()
 
 ApiRouter.post("/commands", (req, res) => {
+    if(req.headers.authorization !== process.env.apiKey) {
+        return res.sendStatus(403)
+    }
     try {
         infodb.establecer("PancyBotCmds", req.body.commands)
         console.log(req.body.commands)
@@ -20,11 +23,14 @@ ApiRouter.get("/commands", (req, res) => {
 })
 
 ApiRouter.post("/info", (req, res) => {
+    if(req.headers.authorization !== process.env.apiKey) {
+        return res.sendStatus(403)
+    }
     try {
         infodb.establecer("PancyBotInfo", req.body.info)
         console.log(req.body)
     } catch (err) {
-        res.send(err).status(500) 
+        res.status(500).send(err)
     } finally {
         res.sendStatus(204)
     }

@@ -5,6 +5,7 @@ const PageRouter = require("./Routers/public/index")
 const megadb = require('megadb')
 const infodb = new megadb.crearDB("info", "data")
 const bodyParser = require("body-parser");
+require('dotenv').config()
 
 const app = express();
 
